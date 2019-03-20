@@ -24,29 +24,11 @@
 		}
 
 
-		// После каждого (time) интервала функция обновляет div#updatebox
-
 		function update() {
 
 		    var xmlhttp = getXmlHttp()
-
-        	//Проверим первоначальный ввывод. Если не определено, то номер сообщения равен 0
-        	if (typeof last_message_id == 'undefined') {
-            last_message_id = 0;
-        	}
-
-
-
-        	//Из какого канала, если не установлен, то в chat
-
-
-               //Проверим равно ли значение канала значению при предыдущей загрузке
-               //Если канал изменился, то сбросим номер сообщения до 0
-
-
-        	//Запрос (с выводом только последних)
+        	//Запрос
 		    xmlhttp.open('GET', "/dia/lib/view/Class_Printing.php", true);
-
 
 		    xmlhttp.onreadystatechange = function() {
 		        if (xmlhttp.readyState == 4) {
@@ -56,34 +38,13 @@
 		     //Получение JSON
 
 		            var mydata=xmlhttp.responseText;
-    		        mydata= JSON.parse(mydata);
-
-
-
-
-        //Переменная с текстом
-
 
       var itm, span_text;
 
-
-
-                //clone = itm.cloneNode(true); //Клонируем
         itm = document.getElementById("parent"); //Получаем id div-a
-        //span_sender = document.createElement("span"); //Создадим span для отправителя
-        //span_sender.setAttribute("class", "sender"); //Установим ему атрибут class для смены стиля
         span_text = document.createElement("span");  //Создадим span для текста
-        //span_sender.innerHTML = mydata[i].login + ' - > ';    //Добавим в sender имя
         span_text.innerHTML = '<span style="display:inline-block;  bottom: 200px; background-color: green; width: 10px; height: ' + mydata+'px;"></span>'; //Добавим текст и перенос строки
-        //itm.appendChild(span_sender );   //Добавим span_sender к div
         itm.appendChild(span_text); //Добавим text к div
-
-
-
-
-
-
-
 
 		            }
 		        }
